@@ -1,6 +1,8 @@
 import model.Boots;
 import model.Cloth;
 import model.User;
+import service.UserService;
+import service.UserServiceImpl;
 
 public class Main {
 
@@ -12,5 +14,17 @@ public class Main {
         System.out.println(user);
         System.out.println(boots);
         System.out.println(cloth);
+
+        User user2 = new User(2L, "admin2", "secretpass2");
+        User user3 = new User(3L, "admin3", "secretpass3");
+
+        UserService userService = new UserServiceImpl();
+        userService.addUser(user);
+        userService.addUser(user2);
+        userService.addUser(user3);
+
+        System.out.println(userService.getAllUsers());
+        userService.removeUser(user2.getId());
+        System.out.println(userService.getAllUsers());
     }
 }
